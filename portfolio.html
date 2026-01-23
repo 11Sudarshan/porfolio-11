@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudarshan S | Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;400;500&family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        // Light Theme
+                        primary: '#7D570E',
+                        onPrimary: '#FFFFFF',
+                        surface: '#FFF8F3', 
+                        onSurface: '#201B13',
+                        outline: '#807567',
+                        
+                        // Dark Theme (Your Custom Palette)
+                        dark: {
+                            primary: '#F0BE6D', 
+                            onPrimary: '#432C00',
+                            surface: '#17130B', 
+                            onSurface: '#ECE1D4',
+                            surfaceVariant: '#4E4539',
+                            outline: '#9B8F80'
+                        }
+                    },
+                    animation: {
+                        'marquee': 'marquee 25s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateY(0%)' },
+                            '100%': { transform: 'translateY(-50%)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Hide scrollbar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        html, body {
+            overflow: hidden; 
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .menu-item:hover {
+            letter-spacing: 0.1em;
+            color: #F0BE6D;
+        }
+        
+        /* The Background Name Styling - Perfect Fit */
+        .bg-name-text {
+            -webkit-text-stroke: 2px rgba(125, 87, 14, 0.3);
+            color: transparent;
+            transition: all 0.5s ease;
+        }
+        
+        .dark .bg-name-text {
+            -webkit-text-stroke: 2px rgba(240, 190, 109, 0.2);
+            color: rgba(240, 190, 109, 0.05);
+        }
+
+        /* Nav Arrow Styling */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 40;
+            padding: 1rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(128, 128, 128, 0.2);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0.5;
+        }
+        .nav-arrow:hover {
+            background: rgba(240, 190, 109, 0.2); /* Dark Primary tint */
+            border-color: #F0BE6D;
+            opacity: 1;
+        }
+        .nav-arrow svg {
+            width: 2rem;
+            height: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-surface text-onSurface dark:bg-dark-surface dark:text-dark-onSurface transition-colors duration-300">
+
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-6 md:px-10 pointer-events-none">
+        <button onclick="scrollToSection('home')" class="group flex items-center gap-2 text-onSurface dark:text-dark-onSurface pointer-events-auto transition-colors duration-300">
+            <span class="font-display font-bold text-xl tracking-tighter group-hover:opacity-70 transition-opacity">SUDARSHAN S.</span>
+        </button>
+
+        <button onclick="toggleTheme()" class="pointer-events-auto p-2 rounded-full border border-current text-onSurface dark:text-dark-onSurface hover:bg-onSurface hover:text-surface dark:hover:bg-dark-onSurface dark:hover:text-dark-surface transition-all">
+            <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 hidden">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+            <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 block">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+            </svg>
+        </button>
+    </nav>
+
+    <main id="scroller" class="flex flex-col md:flex-row h-screen w-full overflow-x-auto overflow-y-hidden no-scrollbar snap-x snap-mandatory scroll-smooth">
+
+        <section id="home" class="min-w-full h-screen flex items-center justify-center relative snap-start overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
+                <h1 class="font-display text-[11vw] md:text-[13vw] font-bold uppercase leading-none bg-name-text whitespace-nowrap tracking-wider">
+                    SUDARSHAN
+                </h1>
+            </div>
+
+            <div class="z-10 relative text-center">
+                <ul class="flex flex-col gap-4 md:gap-8 items-center">
+                    <li><button onclick="scrollToSection('projects')" class="menu-item font-display text-4xl md:text-6xl uppercase font-bold text-outline dark:text-dark-outline hover:text-primary dark:hover:text-dark-primary transition-all duration-300">Projects</button></li>
+                    <li><button onclick="scrollToSection('experience')" class="menu-item font-display text-4xl md:text-6xl uppercase font-bold text-outline dark:text-dark-outline hover:text-primary dark:hover:text-dark-primary transition-all duration-300">Experience</button></li>
+                    <li><button onclick="scrollToSection('stack')" class="menu-item font-display text-4xl md:text-6xl uppercase font-bold text-outline dark:text-dark-outline hover:text-primary dark:hover:text-dark-primary transition-all duration-300">Stack</button></li>
+                    <li><button onclick="scrollToSection('contact')" class="menu-item font-display text-4xl md:text-6xl uppercase font-bold text-outline dark:text-dark-outline hover:text-primary dark:hover:text-dark-primary transition-all duration-300">Contact</button></li>
+                </ul>
+            </div>
+            
+            <div class="absolute inset-0 -z-10 opacity-10">
+                <div class="w-full h-full bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')] bg-cover bg-center grayscale"></div>
+            </div>
+
+            <button onclick="scrollToSection('projects')" class="nav-arrow right-4 md:right-10 animate-pulse-slow text-onSurface dark:text-dark-onSurface">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </button>
+        </section>
+
+<section id="projects" class="min-w-full md:min-w-[85vw] h-screen flex items-center justify-center p-6 snap-center border-l border-white/5 relative bg-surface dark:bg-dark-surface">
+            <div class="absolute top-28 md:top-32 left-6 md:left-10 font-mono text-sm opacity-50 z-20">01 / PROJECTS</div>
+            
+            <div class="project-card relative w-full max-w-6xl h-[70vh] md:h-[80vh] bg-black rounded-xl overflow-hidden group cursor-pointer border border-dark-surfaceVariant/50 shadow-2xl">
+                <div class="project-bg absolute inset-0 bg-[url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-60 transition-all duration-700"></div>
+                <div class="absolute bottom-0 left-0 w-full p-8 md:p-16 bg-gradient-to-t from-black via-black/90 to-transparent">
+                    <div class="flex flex-col md:flex-row gap-6 justify-between items-end">
+                        <div class="max-w-2xl">
+                            <div class="flex items-center gap-4 mb-4">
+                                <span class="px-3 py-1 border border-dark-primary text-dark-primary text-xs font-mono uppercase rounded-full">New Release</span>
+                                <span class="text-white/60 text-xs font-mono">React Native • Expo</span>
+                            </div>
+                            <h2 class="font-display text-4xl md:text-7xl text-white font-bold mb-4">LedgerIt</h2>
+                            <p class="text-gray-300 font-sans text-sm md:text-lg mb-6">Financial management for SMBs featuring Role-Based Access Control, real-time expense tracking, and Razorpay subscription models.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="scrollToSection('home')" class="nav-arrow left-4 text-onSurface dark:text-dark-onSurface">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+            </button>
+            <button onclick="scrollToSection('project-2')" class="nav-arrow right-4 text-onSurface dark:text-dark-onSurface">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </button>
+        </section>
+
+        <section id="project-2" class="min-w-full md:min-w-[85vw] h-screen flex items-center justify-center p-6 snap-center border-l border-white/5 relative bg-surface dark:bg-dark-surface">
+            <div class="absolute top-28 md:top-32 left-6 md:left-10 font-mono text-sm opacity-50 z-20">02 / PROJECTS</div>
+            
+            <div class="project-card relative w-full max-w-6xl h-[70vh] md:h-[80vh] bg-black rounded-xl overflow-hidden group cursor-pointer border border-dark-surfaceVariant/50 shadow-2xl">
+                <div class="project-bg absolute inset-0 bg-[url('https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop')] bg-cover bg-center opacity-60 transition-all duration-700"></div>
+                <div class="absolute bottom-0 left-0 w-full p-8 md:p-16 bg-gradient-to-t from-black via-black/90 to-transparent">
+                    <div class="max-w-2xl">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="text-white/60 text-xs font-mono">Angular • TypeScript • SCSS</span>
+                        </div>
+                        <h2 class="font-display text-4xl md:text-7xl text-white font-bold mb-4">CreativeConnect</h2>
+                        <p class="text-gray-300 font-sans text-sm md:text-lg mb-4">
+                            A specialized collaboration platform for the movie industry.
+                        </p>
+                        <ul class="text-gray-400 font-sans text-sm list-disc pl-4 space-y-1">
+                            <li>Modular architecture enabling professionals to showcase portfolios.</li>
+                            <li>Implemented secure authentication and real-time messaging.</li>
+                            <li>Optimized component reusability by 40% for faster development.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="scrollToSection('projects')" class="nav-arrow left-4 text-onSurface dark:text-dark-onSurface">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+            </button>
+            <button onclick="scrollToSection('experience')" class="nav-arrow right-4 text-onSurface dark:text-dark-onSurface">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </button>
+        </section>
+
+        <section id="experience" class="min-w-full h-screen flex flex-col justify-center items-center bg-surface dark:bg-dark-surface snap-start relative border-l border-white/5 overflow-y-auto">
+            <h3 class="font-display text-[12vw] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-dark-surfaceVariant/10 uppercase font-bold select-none pointer-events-none">Experience</h3>
+            
+            <div class="z-10 w-full max-w-5xl px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+                <div class="border-l-2 border-primary dark:border-dark-primary pl-6 py-2">
+                    <div class="font-mono text-xs opacity-50 mb-2">FEB 2025 - AUG 2025</div>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold mb-1">Epicor</h2>
+                    <h4 class="font-sans text-lg text-primary dark:text-dark-primary mb-4">Product Development Intern</h4>
+                    <p class="font-sans text-sm opacity-80 leading-relaxed">
+                        Developed enterprise modules using <strong>Java, TypeScript, and Angular</strong>. Resolved 20+ UI/Backend bugs and optimized the hot-key directive. Managed CI/CD pipelines via Azure DevOps & Jenkins.
+                    </p>
+                </div>
+                <div class="border-l-2 border-outline dark:border-dark-outline pl-6 py-2">
+                    <div class="font-mono text-xs opacity-50 mb-2">MAY 2023 - NOV 2023</div>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold mb-1">DELOAI</h2>
+                    <h4 class="font-sans text-lg text-primary dark:text-dark-primary mb-4">App Development Intern</h4>
+                    <p class="font-sans text-sm opacity-80 leading-relaxed">
+                        Built an ERP App for 500+ students and an E-Commerce platform handling 1000+ products using <strong>React Native, Django, and MongoDB</strong>. Deployed scalable solutions on AWS.
+                    </p>
+                </div>
+            </div>
+
+            <button onclick="scrollToSection('project-2')" class="nav-arrow left-4 text-onSurface dark:text-dark-onSurface">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+            </button>
+            <button onclick="scrollToSection('stack')" class="nav-arrow right-4 text-onSurface dark:text-dark-onSurface">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </button>
+        </section>
+
+        <section id="stack" class="min-w-full h-screen flex flex-col md:flex-row bg-surface dark:bg-dark-surface snap-start border-l border-white/5 relative overflow-hidden">
+            
+            <div class="w-full md:w-1/2 flex items-center justify-center p-12 z-10 bg-surface/90 dark:bg-dark-surface/90 backdrop-blur-sm">
+                <div class="max-w-lg">
+                    <h2 class="font-display text-5xl md:text-7xl mb-8 text-primary dark:text-dark-primary">Tech Stack</h2>
+                    <p class="font-sans text-lg md:text-xl opacity-70 mb-8 leading-relaxed">
+                        I’m a frontend-focused full-stack developer who enjoys building intuitive, high-performance interfaces with React and Angular. I complement strong UI development with backend experience in Java, Spring Boot, and Node.js, enabling me to ship complete, production-ready features. I care deeply about clean architecture, performance, and creating seamless user experiences backed by robust APIs.
+                    </p>
+                    <div class="flex flex-wrap gap-3 font-mono text-xs md:text-sm">
+                         <span class="px-3 py-2 border border-outline dark:border-dark-outline rounded-md">React Native</span>
+                         <span class="px-3 py-2 border border-outline dark:border-dark-outline rounded-md">Angular</span>
+                         <span class="px-3 py-2 border border-outline dark:border-dark-outline rounded-md">Spring Boot</span>
+                         <span class="px-3 py-2 border border-outline dark:border-dark-outline rounded-md">Java</span>
+                         <span class="px-3 py-2 border border-outline dark:border-dark-outline rounded-md">Node.js</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="w-full md:w-1/2 h-full bg-surfaceVariant dark:bg-black/20 overflow-hidden relative flex items-center justify-center">
+                 <div class="animate-marquee flex flex-col items-center gap-4 opacity-50 select-none">
+                     <span class="font-display text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent">ANGULAR</span>
+                     <span class="font-display text-6xl md:text-8xl text-onSurface dark:text-dark-onSurface">REACT</span>
+                     <span class="font-display text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent">JAVA</span>
+                     <span class="font-display text-6xl md:text-8xl text-onSurface dark:text-dark-onSurface">NODE.JS</span>
+                     <span class="font-display text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent">SQL</span>
+                     <span class="font-display text-6xl md:text-8xl text-onSurface dark:text-dark-onSurface">GIT</span>
+                     <span class="font-display text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent">EXPO</span>
+                     <span class="font-display text-6xl md:text-8xl text-onSurface dark:text-dark-onSurface">REACT</span>
+                     <span class="font-display text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent">JAVA</span>
+                 </div>
+            </div>
+
+            <button onclick="scrollToSection('experience')" class="nav-arrow left-4 text-onSurface dark:text-dark-onSurface">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+            </button>
+            <button onclick="scrollToSection('contact')" class="nav-arrow right-4 text-onSurface dark:text-dark-onSurface">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </button>
+        </section>
+        
+        <section id="contact" class="min-w-full h-screen flex items-center justify-center snap-start relative bg-surface dark:bg-dark-surface border-l border-white/5">
+             <div class="text-center animate-float px-4">
+                 <p class="font-mono text-sm text-dark-primary mb-6 tracking-widest">READY TO COLLABORATE?</p>
+                 <a href="mailto:SudarshanRadiohead@gmail.com" class="font-display text-5xl md:text-8xl hover:text-dark-primary transition-colors underline decoration-2 underline-offset-8 break-all">
+                     Let's Talk.
+                 </a>
+                 <div class="mt-12 flex flex-col md:flex-row justify-center gap-8 font-mono text-sm opacity-60">
+                     <a href="https://www.linkedin.com/in/sudarshan-s-99460429a/" class="hover:text-primary dark:hover:text-dark-primary transition-colors">LINKEDIN</a>
+                     <a href="https://github.com/11Sudarshan" class="hover:text-primary dark:hover:text-dark-primary transition-colors">GITHUB</a>
+                     <a href="tel:+919535396794" class="hover:text-primary dark:hover:text-dark-primary transition-colors">+91 9535396794</a>
+                 </div>
+             </div>
+
+            <button onclick="scrollToSection('stack')" class="nav-arrow left-4 text-onSurface dark:text-dark-onSurface">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+            </button>
+        </section>
+
+    </main>
+
+    <script>
+        // 1. Navigation Logic
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+            }
+        }
+        
+        // 2. Theme Toggle Logic
+        function toggleTheme() {
+            const html = document.documentElement;
+            const sun = document.getElementById('sun-icon');
+            const moon = document.getElementById('moon-icon');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                sun.classList.add('hidden');
+                moon.classList.remove('hidden');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                sun.classList.remove('hidden');
+                moon.classList.add('hidden');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Check local storage on load
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.getElementById('sun-icon').classList.add('hidden');
+            document.getElementById('moon-icon').classList.remove('hidden');
+        } else {
+            document.getElementById('sun-icon').classList.remove('hidden');
+            document.getElementById('moon-icon').classList.add('hidden');
+        }
+        
+        // 3. Horizontal Scroll with Mouse Wheel (Desktop)
+        const scroller = document.getElementById('scroller');
+        scroller.addEventListener('wheel', (evt) => {
+            if (window.innerWidth > 768) {
+                // If scrolling predominantly vertical
+                if(Math.abs(evt.deltaY) > Math.abs(evt.deltaX)) {
+                     scroller.scrollLeft += evt.deltaY;
+                     // Prevent default only if we are actually scrolling
+                     evt.preventDefault();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
