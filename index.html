@@ -1,8 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Sudarshan S | Portfolio</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,14 +28,11 @@
               mono: ["JetBrains Mono", "monospace"],
             },
             colors: {
-              // Light Theme
               primary: "#7D570E",
               onPrimary: "#FFFFFF",
               surface: "#FFF8F3",
               onSurface: "#201B13",
               outline: "#807567",
-
-              // Dark Theme
               dark: {
                 primary: "#F0BE6D",
                 onPrimary: "#432C00",
@@ -71,7 +71,6 @@
     </script>
 
     <style>
-      /* Hide scrollbar */
       .no-scrollbar::-webkit-scrollbar {
         display: none;
       }
@@ -80,11 +79,24 @@
         scrollbar-width: none;
       }
 
-      html,
+      html {
+        /* Allow vertical scroll on mobile, prevent horizontal */
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+      
       body {
-        overflow: hidden;
-        height: 100vh;
-        width: 100vw;
+        width: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* Desktop: Horizontal layout locks body scroll */
+      @media (min-width: 768px) {
+        html, body {
+          overflow: hidden;
+          height: 100vh;
+        }
       }
 
       .menu-item:hover {
@@ -92,31 +104,28 @@
         color: #f0be6d;
       }
 
-      /* The Background Name Styling */
       .bg-name-text {
         -webkit-text-stroke: 2px rgba(125, 87, 14, 0.3);
         color: transparent;
         transition: all 0.5s ease;
       }
-
       .dark .bg-name-text {
         -webkit-text-stroke: 2px rgba(240, 190, 109, 0.2);
         color: rgba(240, 190, 109, 0.05);
       }
 
-      /* Nav Arrow Styling */
       .nav-arrow {
         position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 40;
+        z-index: 50;
         padding: 1rem;
         border-radius: 9999px;
         border: 1px solid rgba(128, 128, 128, 0.2);
         backdrop-filter: blur(4px);
         transition: all 0.3s ease;
         cursor: pointer;
-        opacity: 0.5;
+        opacity: 0.6;
+        align-items: center;
+        justify-content: center;
       }
       .nav-arrow:hover {
         background: rgba(240, 190, 109, 0.2);
@@ -124,26 +133,28 @@
         opacity: 1;
       }
       .nav-arrow svg {
-        width: 2rem;
-        height: 2rem;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      @media (min-width: 768px) {
+        .nav-arrow svg {
+          width: 2rem;
+          height: 2rem;
+        }
       }
 
-      /* Modal Styles */
       .modal-backdrop {
         backdrop-filter: blur(8px);
         background-color: rgba(0, 0, 0, 0.4);
       }
-
-      /* Custom List Bullet for Modal */
       .custom-list li::before {
         content: "▹";
         color: #f0be6d;
         position: absolute;
         left: 0;
-        top: 6px; /* Adjusted for alignment */
+        top: 6px;
       }
 
-      /* Typography for Project Modal */
       .project-section-title {
         font-family: "JetBrains Mono", monospace;
         font-size: 0.8rem;
@@ -163,14 +174,14 @@
     class="bg-surface text-onSurface dark:bg-dark-surface dark:text-dark-onSurface transition-colors duration-300"
   >
     <nav
-      class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-6 md:px-10 pointer-events-none"
+      class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 py-4 md:px-10 pointer-events-none"
     >
       <button
         onclick="scrollToSection('home')"
         class="group flex items-center gap-2 text-onSurface dark:text-dark-onSurface pointer-events-auto transition-colors duration-300"
       >
         <span
-          class="font-display font-bold text-xl tracking-tighter group-hover:opacity-70 transition-opacity"
+          class="font-display font-bold text-lg md:text-xl tracking-tighter group-hover:opacity-70 transition-opacity"
           >SUDARSHAN S.</span
         >
       </button>
@@ -214,28 +225,29 @@
 
     <main
       id="scroller"
-      class="flex flex-col md:flex-row h-screen w-full overflow-x-auto overflow-y-hidden no-scrollbar snap-x snap-mandatory scroll-smooth"
+      class="flex flex-col w-full h-auto md:h-screen md:flex-row md:overflow-x-auto md:overflow-y-hidden md:snap-x md:snap-mandatory scroll-smooth"
     >
+      
       <section
         id="home"
-        class="min-w-full h-screen flex items-center justify-center relative snap-start overflow-hidden"
+        class="min-w-full min-h-[100dvh] flex items-center justify-center relative md:snap-start overflow-hidden"
       >
         <div
           class="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0"
         >
           <h1
-            class="font-display text-[11vw] md:text-[13vw] font-bold uppercase leading-none bg-name-text whitespace-nowrap tracking-wider"
+            class="font-display text-[15vw] md:text-[13vw] font-bold uppercase leading-none bg-name-text whitespace-nowrap tracking-wider"
           >
             SUDARSHAN
           </h1>
         </div>
 
-        <div class="z-10 relative text-center">
-          <ul class="flex flex-col gap-4 md:gap-8 items-center">
+        <div class="z-10 relative text-center w-full px-4">
+          <ul class="flex flex-col gap-6 md:gap-8 items-center">
             <li>
               <button
                 onclick="scrollToSection('projects')"
-                class="menu-item font-display text-4xl md:text-6xl uppercase font-bold text-outline dark:text-dark-outline hover:text-primary dark:hover:text-dark-primary transition-all duration-300"
+                class="menu-item font-display text-3xl sm:text-4xl md:text-6xl uppercase font-bold text-outline dark:text-dark-outline hover:text-primary dark:hover:text-dark-primary transition-all duration-300"
               >
                 Projects
               </button>
@@ -243,7 +255,7 @@
             <li>
               <button
                 onclick="scrollToSection('experience')"
-                class="menu-item font-display text-4xl md:text-6xl uppercase font-bold text-outline dark:text-dark-outline hover:text-primary dark:hover:text-dark-primary transition-all duration-300"
+                class="menu-item font-display text-3xl sm:text-4xl md:text-6xl uppercase font-bold text-outline dark:text-dark-outline hover:text-primary dark:hover:text-dark-primary transition-all duration-300"
               >
                 Experience
               </button>
@@ -251,7 +263,7 @@
             <li>
               <button
                 onclick="scrollToSection('stack')"
-                class="menu-item font-display text-4xl md:text-6xl uppercase font-bold text-outline dark:text-dark-outline hover:text-primary dark:hover:text-dark-primary transition-all duration-300"
+                class="menu-item font-display text-3xl sm:text-4xl md:text-6xl uppercase font-bold text-outline dark:text-dark-outline hover:text-primary dark:hover:text-dark-primary transition-all duration-300"
               >
                 Stack
               </button>
@@ -259,7 +271,7 @@
             <li>
               <button
                 onclick="scrollToSection('contact')"
-                class="menu-item font-display text-4xl md:text-6xl uppercase font-bold text-outline dark:text-dark-outline hover:text-primary dark:hover:text-dark-primary transition-all duration-300"
+                class="menu-item font-display text-3xl sm:text-4xl md:text-6xl uppercase font-bold text-outline dark:text-dark-outline hover:text-primary dark:hover:text-dark-primary transition-all duration-300"
               >
                 Contact
               </button>
@@ -275,7 +287,7 @@
 
         <button
           onclick="scrollToSection('projects')"
-          class="nav-arrow right-4 md:right-10 animate-pulse-slow text-onSurface dark:text-dark-onSurface"
+          class="nav-arrow hidden md:flex top-1/2 -translate-y-1/2 right-10 animate-pulse-slow text-onSurface dark:text-dark-onSurface"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -293,62 +305,70 @@
         </button>
       </section>
 
-<section
+      <section
         id="projects"
-        class="min-w-full md:min-w-[85vw] h-screen flex items-center justify-center p-6 snap-center border-l border-white/5 relative bg-surface dark:bg-dark-surface"
+        class="min-w-full min-h-[100dvh] flex items-center justify-center p-4 md:p-6 md:snap-start border-t md:border-t-0 md:border-l border-white/5 relative bg-surface dark:bg-dark-surface"
       >
         <div
-          class="absolute top-28 md:top-32 left-6 md:left-10 font-mono text-sm opacity-50 z-20"
+          class="absolute top-24 md:top-32 left-6 md:left-10 font-mono text-sm opacity-50 z-20"
         >
           01 / PROJECTS
         </div>
 
         <div
           onclick="openModal('ledgerit')"
-          class="project-card relative w-full max-w-6xl h-[70vh] md:h-[80vh] bg-black rounded-xl overflow-hidden group cursor-pointer border border-dark-surfaceVariant/50 shadow-2xl transition-transform duration-300 hover:scale-[1.01]"
+          class="project-card relative w-[90%] md:w-full max-w-6xl h-[60vh] md:h-[80vh] bg-black rounded-xl overflow-hidden group cursor-pointer border border-dark-surfaceVariant/50 shadow-2xl transition-transform duration-300 hover:scale-[1.01]"
         >
-          <div id="ledgerit-slideshow" class="absolute inset-0 z-0">
-             <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-60" 
-                  style="background-image: url('assets/1.png')"></div>
-             
-             <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" 
-                  style="background-image: url('assets/3.png')"></div>
-             
-             <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" 
-                  style="background-image: url('assets/2.png') "></div>
-            
-             <div class="slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0" 
-                  style="background-image: url('assets/4.png') "></div>
+          <div id="ledgerit-slideshow" class="absolute inset-0 z-0 bg-black">
+            <div
+              class="slide absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 opacity-60"
+              style="background-image: url('assets/1.png')"
+            ></div>
+            <div
+              class="slide absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 opacity-0"
+              style="background-image: url('assets/3.png')"
+            ></div>
+            <div
+              class="slide absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 opacity-0"
+              style="background-image: url('assets/2.png')"
+            ></div>
+            <div
+              class="slide absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 opacity-0"
+              style="background-image: url('assets/4.png')"
+            ></div>
           </div>
 
           <div
-            class="absolute bottom-0 left-0 w-full p-8 md:p-16 bg-gradient-to-t from-black via-black/10 to-transparent z-10"
+            class="absolute bottom-0 left-0 w-full p-6 md:p-16 bg-gradient-to-t from-black via-black/10 to-transparent z-10"
           >
             <div
-              class="flex flex-col md:flex-row gap-6 justify-between items-end"
+              class="flex flex-col md:flex-row gap-4 md:gap-6 justify-between items-end"
             >
               <div class="max-w-2xl">
-                <div class="flex items-center gap-4 mb-4">
+                <div class="flex items-center gap-3 mb-3">
                   <span
-                    class="px-3 py-1 border border-dark-primary text-dark-primary text-xs font-mono uppercase rounded-full"
+                    class="px-3 py-1 border border-dark-primary text-dark-primary text-[10px] md:text-xs font-mono uppercase rounded-full"
                     >New Release</span
                   >
-                  <span class="text-white/60 text-xs font-mono"
+                  <span
+                    class="text-white/60 text-[10px] md:text-xs font-mono"
                     >React Native • Expo</span
                   >
                 </div>
                 <h2
-                  class="font-display text-4xl md:text-7xl text-white font-bold mb-4"
+                  class="font-display text-2xl md:text-7xl text-white font-bold mb-2 md:mb-4"
                 >
                   LedgerIt
                 </h2>
-                <p class="text-gray-300 font-sans text-sm md:text-lg mb-6">
+                <p
+                  class="text-gray-300 font-sans text-xs md:text-lg mb-4 md:mb-6 line-clamp-3 md:line-clamp-none"
+                >
                   Financial management for SMBs featuring Role-Based Access
                   Control, real-time expense tracking, and Razorpay subscription
                   models.
                 </p>
                 <div
-                  class="text-white/80 font-mono text-xs uppercase tracking-widest border-b border-transparent group-hover:border-dark-primary inline-block pb-1 transition-all"
+                  class="text-white/80 font-mono text-[10px] md:text-xs uppercase tracking-widest border-b border-transparent group-hover:border-dark-primary inline-block pb-1 transition-all"
                 >
                   Click to View Details
                 </div>
@@ -359,7 +379,7 @@
 
         <button
           onclick="scrollToSection('home')"
-          class="nav-arrow left-4 text-onSurface dark:text-dark-onSurface"
+          class="nav-arrow left-4 hidden md:flex top-1/2 -translate-y-1/2 text-onSurface dark:text-dark-onSurface"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -377,7 +397,7 @@
         </button>
         <button
           onclick="scrollToSection('project-2')"
-          class="nav-arrow right-4 text-onSurface dark:text-dark-onSurface"
+          class="nav-arrow right-4 hidden md:flex top-1/2 -translate-y-1/2 text-onSurface dark:text-dark-onSurface"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -393,65 +413,47 @@
             />
           </svg>
         </button>
-
-        <script>
-            (function() {
-                const slides = document.querySelectorAll('#ledgerit-slideshow .slide');
-                if(slides.length === 0) return;
-                let currentSlide = 0;
-                
-                setInterval(() => {
-                    // Fade out current
-                    slides[currentSlide].classList.remove('opacity-60');
-                    slides[currentSlide].classList.add('opacity-0');
-                    
-                    // Move index
-                    currentSlide = (currentSlide + 1) % slides.length;
-                    
-                    // Fade in next
-                    slides[currentSlide].classList.remove('opacity-0');
-                    slides[currentSlide].classList.add('opacity-60');
-                }, 4000); // 4 seconds per slide
-            })();
-        </script>
       </section>
 
       <section
         id="project-2"
-        class="min-w-full md:min-w-[85vw] h-screen flex items-center justify-center p-6 snap-center border-l border-white/5 relative bg-surface dark:bg-dark-surface"
+        class="min-w-full min-h-[100dvh] flex items-center justify-center p-4 md:p-6 md:snap-start border-t md:border-t-0 md:border-l border-white/5 relative bg-surface dark:bg-dark-surface"
       >
         <div
-          class="absolute top-28 md:top-32 left-6 md:left-10 font-mono text-sm opacity-50 z-20"
+          class="absolute top-24 md:top-32 left-6 md:left-10 font-mono text-sm opacity-50 z-20"
         >
           02 / PROJECTS
         </div>
 
         <div
           onclick="openModal('creative')"
-          class="project-card relative w-full max-w-6xl h-[70vh] md:h-[80vh] bg-black rounded-xl overflow-hidden group cursor-pointer border border-dark-surfaceVariant/50 shadow-2xl transition-transform duration-300 hover:scale-[1.01]"
+          class="project-card relative w-[90%] md:w-full max-w-6xl h-[60vh] md:h-[80vh] bg-black rounded-xl overflow-hidden group cursor-pointer border border-dark-surfaceVariant/50 shadow-2xl transition-transform duration-300 hover:scale-[1.01]"
         >
           <div
             class="project-bg absolute inset-0 bg-[url('https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop')] bg-cover bg-center opacity-60 transition-all duration-700"
           ></div>
           <div
-            class="absolute bottom-0 left-0 w-full p-8 md:p-16 bg-gradient-to-t from-black via-black/90 to-transparent"
+            class="absolute bottom-0 left-0 w-full p-6 md:p-16 bg-gradient-to-t from-black via-black/90 to-transparent"
           >
             <div class="max-w-2xl">
-              <div class="flex items-center gap-4 mb-4">
-                <span class="text-white/60 text-xs font-mono"
+              <div class="flex items-center gap-4 mb-3 md:mb-4">
+                <span
+                  class="text-white/60 text-[10px] md:text-xs font-mono"
                   >Angular • TypeScript • SCSS</span
                 >
               </div>
               <h2
-                class="font-display text-4xl md:text-7xl text-white font-bold mb-4"
+                class="font-display text-2xl md:text-7xl text-white font-bold mb-2 md:mb-4"
               >
                 CreativeConnect
               </h2>
-              <p class="text-gray-300 font-sans text-sm md:text-lg mb-4">
+              <p
+                class="text-gray-300 font-sans text-xs md:text-lg mb-4 line-clamp-3 md:line-clamp-none"
+              >
                 A specialized collaboration platform for the movie industry.
               </p>
               <ul
-                class="text-gray-400 font-sans text-sm list-disc pl-4 space-y-1"
+                class="text-gray-400 font-sans text-xs md:text-sm list-disc pl-4 space-y-1 hidden md:block"
               >
                 <li>
                   Modular architecture enabling professionals to showcase
@@ -461,11 +463,12 @@
                   Implemented secure authentication and real-time messaging.
                 </li>
                 <li>
-                  Optimized component reusability by 40% for faster development.
+                  Optimized component reusability by 40% for faster
+                  development.
                 </li>
               </ul>
               <div
-                class="mt-4 text-white/80 font-mono text-xs uppercase tracking-widest border-b border-transparent group-hover:border-dark-primary inline-block pb-1 transition-all"
+                class="mt-4 text-white/80 font-mono text-[10px] md:text-xs uppercase tracking-widest border-b border-transparent group-hover:border-dark-primary inline-block pb-1 transition-all"
               >
                 Click to View Details
               </div>
@@ -475,7 +478,7 @@
 
         <button
           onclick="scrollToSection('projects')"
-          class="nav-arrow left-4 text-onSurface dark:text-dark-onSurface"
+          class="nav-arrow left-4 hidden md:flex top-1/2 -translate-y-1/2 text-onSurface dark:text-dark-onSurface"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -493,7 +496,7 @@
         </button>
         <button
           onclick="scrollToSection('experience')"
-          class="nav-arrow right-4 text-onSurface dark:text-dark-onSurface"
+          class="nav-arrow right-4 hidden md:flex top-1/2 -translate-y-1/2 text-onSurface dark:text-dark-onSurface"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -513,22 +516,16 @@
 
       <section
         id="experience"
-        class="min-w-full h-screen flex flex-col justify-center items-center bg-surface dark:bg-dark-surface snap-start relative border-l border-white/5 overflow-y-auto"
+        class="min-w-full min-h-[100dvh] flex flex-col justify-center items-center bg-surface dark:bg-dark-surface md:snap-start relative border-t md:border-t-0 md:border-l border-white/5"
       >
         <h3
-          class="font-display text-[12vw] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-dark-surfaceVariant/10 uppercase font-bold select-none pointer-events-none"
+          class="font-display text-[15vw] md:text-[12vw] absolute top-20 md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-dark-surfaceVariant/10 uppercase font-bold select-none pointer-events-none"
         >
           Experience
         </h3>
 
-        <p
-          class="absolute top-28 md:top-32 left-6 md:left-10 font-mono text-sm opacity-50 z-20"
-        >
-          CLICK CARDS FOR DETAILS
-        </p>
-
         <div
-          class="z-10 w-full max-w-5xl px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16"
+          class="z-10 w-full max-w-5xl px-6 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 pt-32 md:pt-0 pb-20 md:pb-0"
         >
           <button
             onclick="openModal('epicor')"
@@ -554,12 +551,12 @@
               </svg>
             </div>
             <h2
-              class="font-display text-3xl md:text-4xl font-bold mb-1 group-hover:text-primary dark:group-hover:text-dark-primary transition-colors"
+              class="font-display text-2xl md:text-4xl font-bold mb-1 group-hover:text-primary dark:group-hover:text-dark-primary transition-colors"
             >
               Epicor
             </h2>
             <h4
-              class="font-sans text-lg text-primary dark:text-dark-primary mb-4"
+              class="font-sans text-base md:text-lg text-primary dark:text-dark-primary mb-4"
             >
               Product Development Intern
             </h4>
@@ -601,12 +598,12 @@
               </svg>
             </div>
             <h2
-              class="font-display text-3xl md:text-4xl font-bold mb-1 group-hover:text-primary dark:group-hover:text-dark-primary transition-colors"
+              class="font-display text-2xl md:text-4xl font-bold mb-1 group-hover:text-primary dark:group-hover:text-dark-primary transition-colors"
             >
               DELOAI
             </h2>
             <h4
-              class="font-sans text-lg text-primary dark:text-dark-primary mb-4"
+              class="font-sans text-base md:text-lg text-primary dark:text-dark-primary mb-4"
             >
               App Development Intern
             </h4>
@@ -626,7 +623,7 @@
 
         <button
           onclick="scrollToSection('project-2')"
-          class="nav-arrow left-4 text-onSurface dark:text-dark-onSurface"
+          class="nav-arrow left-4 hidden md:flex top-1/2 -translate-y-1/2 text-onSurface dark:text-dark-onSurface"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -644,7 +641,7 @@
         </button>
         <button
           onclick="scrollToSection('stack')"
-          class="nav-arrow right-4 text-onSurface dark:text-dark-onSurface"
+          class="nav-arrow right-4 hidden md:flex top-1/2 -translate-y-1/2 text-onSurface dark:text-dark-onSurface"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -664,29 +661,25 @@
 
       <section
         id="stack"
-        class="min-w-full h-screen flex flex-col md:flex-row bg-surface dark:bg-dark-surface snap-start border-l border-white/5 relative overflow-hidden"
+        class="min-w-full h-[100dvh] flex flex-col md:flex-row bg-surface dark:bg-dark-surface md:snap-start border-t md:border-t-0 md:border-l border-white/5 relative overflow-hidden"
       >
         <div
-          class="w-full md:w-1/2 flex items-center justify-center p-12 z-10 bg-surface/90 dark:bg-dark-surface/90 backdrop-blur-sm"
+          class="w-full h-[60%] md:h-full md:w-1/2 flex items-center justify-center p-6 md:p-12 z-10 bg-surface/90 dark:bg-dark-surface/90 backdrop-blur-sm overflow-y-auto md:overflow-visible"
         >
-          <div class="max-w-lg">
+          <div class="max-w-lg mt-8 md:mt-0">
             <h2
-              class="font-display text-5xl md:text-7xl mb-8 text-primary dark:text-dark-primary"
+              class="font-display text-4xl md:text-7xl mb-4 md:mb-8 text-primary dark:text-dark-primary"
             >
               Tech Stack
             </h2>
             <p
-              class="font-sans text-lg md:text-xl opacity-70 mb-8 leading-relaxed"
+              class="font-sans text-sm md:text-xl opacity-70 mb-4 md:mb-8 leading-relaxed"
             >
               I’m a frontend-focused full-stack developer who enjoys building
-              intuitive, high-performance interfaces with React and Angular. I
-              complement strong UI development with backend experience in Java,
-              Spring Boot, and Node.js, enabling me to ship complete,
-              production-ready features. I care deeply about clean architecture,
-              performance, and creating seamless user experiences backed by
-              robust APIs.
+              intuitive, high-performance interfaces. I bridge the gap between
+              robust Java/Spring backends and fluid React/Angular frontends.
             </p>
-            <div class="flex flex-wrap gap-3 font-mono text-xs md:text-sm">
+            <div class="flex flex-wrap gap-2 md:gap-3 font-mono text-[10px] md:text-sm">
               <span
                 class="px-3 py-2 border border-outline dark:border-dark-outline rounded-md"
                 >React Native</span
@@ -712,45 +705,45 @@
         </div>
 
         <div
-          class="w-full md:w-1/2 h-full bg-surfaceVariant dark:bg-black/20 overflow-hidden relative flex items-center justify-center"
+          class="w-full h-[40%] md:h-full md:w-1/2 bg-surfaceVariant dark:bg-black/20 overflow-hidden relative flex items-center justify-center"
         >
           <div
             class="animate-marquee flex flex-col items-center gap-4 opacity-50 select-none"
           >
             <span
-              class="font-display text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent"
+              class="font-display text-4xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent"
               >ANGULAR</span
             >
             <span
-              class="font-display text-6xl md:text-8xl text-onSurface dark:text-dark-onSurface"
+              class="font-display text-4xl md:text-8xl text-onSurface dark:text-dark-onSurface"
               >REACT</span
             >
             <span
-              class="font-display text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent"
+              class="font-display text-4xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent"
               >JAVA</span
             >
             <span
-              class="font-display text-6xl md:text-8xl text-onSurface dark:text-dark-onSurface"
+              class="font-display text-4xl md:text-8xl text-onSurface dark:text-dark-onSurface"
               >NODE.JS</span
             >
             <span
-              class="font-display text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent"
+              class="font-display text-4xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent"
               >SQL</span
             >
             <span
-              class="font-display text-6xl md:text-8xl text-onSurface dark:text-dark-onSurface"
+              class="font-display text-4xl md:text-8xl text-onSurface dark:text-dark-onSurface"
               >GIT</span
             >
             <span
-              class="font-display text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent"
+              class="font-display text-4xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent"
               >EXPO</span
             >
             <span
-              class="font-display text-6xl md:text-8xl text-onSurface dark:text-dark-onSurface"
+              class="font-display text-4xl md:text-8xl text-onSurface dark:text-dark-onSurface"
               >REACT</span
             >
             <span
-              class="font-display text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent"
+              class="font-display text-4xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-black to-transparent dark:from-white dark:to-transparent"
               >JAVA</span
             >
           </div>
@@ -758,7 +751,7 @@
 
         <button
           onclick="scrollToSection('experience')"
-          class="nav-arrow left-4 text-onSurface dark:text-dark-onSurface"
+          class="nav-arrow left-4 hidden md:flex top-1/2 -translate-y-1/2 text-onSurface dark:text-dark-onSurface"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -776,7 +769,7 @@
         </button>
         <button
           onclick="scrollToSection('contact')"
-          class="nav-arrow right-4 text-onSurface dark:text-dark-onSurface"
+          class="nav-arrow right-4 hidden md:flex top-1/2 -translate-y-1/2 text-onSurface dark:text-dark-onSurface"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -796,15 +789,17 @@
 
       <section
         id="contact"
-        class="min-w-full h-screen flex items-center justify-center snap-start relative bg-surface dark:bg-dark-surface border-l border-white/5"
+        class="min-w-full min-h-[100dvh] flex items-center justify-center snap-start relative bg-surface dark:bg-dark-surface border-t md:border-t-0 md:border-l border-white/5"
       >
         <div class="text-center animate-float px-4">
-          <p class="font-mono text-sm text-dark-primary mb-6 tracking-widest">
+          <p
+            class="font-mono text-xs md:text-sm text-dark-primary mb-6 tracking-widest"
+          >
             READY TO COLLABORATE?
           </p>
           <a
             href="mailto:SudarshanRadiohead@gmail.com"
-            class="font-display text-5xl md:text-8xl hover:text-dark-primary transition-colors underline decoration-2 underline-offset-8 break-all"
+            class="font-display text-4xl md:text-8xl hover:text-dark-primary transition-colors underline decoration-2 underline-offset-8 break-all"
           >
             Let's Talk.
           </a>
@@ -812,12 +807,12 @@
             class="mt-12 flex flex-col md:flex-row justify-center gap-8 font-mono text-sm opacity-60"
           >
             <a
-              href="#"
+              href="https://www.linkedin.com/in/sudarshan-s-99460429a/"
               class="hover:text-primary dark:hover:text-dark-primary transition-colors"
               >LINKEDIN</a
             >
             <a
-              href="#"
+              href="https://github.com/11Sudarshan/"
               class="hover:text-primary dark:hover:text-dark-primary transition-colors"
               >GITHUB</a
             >
@@ -831,7 +826,7 @@
 
         <button
           onclick="scrollToSection('stack')"
-          class="nav-arrow left-4 text-onSurface dark:text-dark-onSurface"
+          class="nav-arrow left-4 hidden md:flex top-1/2 -translate-y-1/2 text-onSurface dark:text-dark-onSurface"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -861,26 +856,26 @@
 
       <div
         id="modal-content-box"
-        class="relative z-10 w-full max-w-4xl bg-surface dark:bg-[#1E1A14] border border-outline/20 dark:border-dark-primary/20 shadow-2xl rounded-lg overflow-hidden transform scale-95 opacity-0 transition-all duration-300"
+        class="relative z-10 w-[95%] md:w-full max-w-4xl bg-surface dark:bg-[#1E1A14] border border-outline/20 dark:border-dark-primary/20 shadow-2xl rounded-lg overflow-hidden transform scale-95 opacity-0 transition-all duration-300"
       >
         <div
-          class="flex justify-between items-center p-6 border-b border-outline/10 dark:border-white/5 bg-surfaceVariant/50 dark:bg-[#252018]"
+          class="flex justify-between items-center p-4 md:p-6 border-b border-outline/10 dark:border-white/5 bg-surfaceVariant/50 dark:bg-[#252018]"
         >
           <div class="flex flex-col">
             <span
               id="modal-date"
-              class="font-mono text-xs opacity-60 uppercase tracking-widest mb-1 text-onSurface dark:text-dark-onSurface"
+              class="font-mono text-[10px] md:text-xs opacity-60 uppercase tracking-widest mb-1 text-onSurface dark:text-dark-onSurface"
               >DATE</span
             >
             <h2
               id="modal-title"
-              class="font-display text-3xl md:text-4xl font-bold text-primary dark:text-dark-primary"
+              class="font-display text-2xl md:text-4xl font-bold text-primary dark:text-dark-primary"
             >
               Company
             </h2>
             <h3
               id="modal-role"
-              class="font-sans text-lg md:text-xl opacity-90 text-onSurface dark:text-dark-onSurface"
+              class="font-sans text-sm md:text-xl opacity-90 text-onSurface dark:text-dark-onSurface"
             >
               Role
             </h3>
@@ -895,7 +890,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-8 h-8 group-hover:rotate-90 transition-transform duration-300"
+              class="w-6 h-6 md:w-8 md:h-8 group-hover:rotate-90 transition-transform duration-300"
             >
               <path
                 stroke-linecap="round"
@@ -906,11 +901,12 @@
           </button>
         </div>
 
-        <div class="p-8 md:p-10 max-h-[70vh] overflow-y-auto">
+        <div class="p-6 md:p-10 max-h-[70vh] overflow-y-auto">
           <div
             id="modal-body-container"
-            class="font-sans text-lg leading-relaxed text-onSurface dark:text-gray-300"
-          ></div>
+            class="font-sans text-sm md:text-lg leading-relaxed text-onSurface dark:text-gray-300"
+          >
+            </div>
         </div>
       </div>
     </div>
@@ -956,7 +952,7 @@
         document.getElementById("moon-icon").classList.add("hidden");
       }
 
-      // 3. Horizontal Scroll
+      // 3. Horizontal Scroll for Desktop
       const scroller = document.getElementById("scroller");
       scroller.addEventListener("wheel", (evt) => {
         if (window.innerWidth > 768) {
@@ -976,11 +972,11 @@
           role: "Product Development Intern",
           date: "FEB 2025 - AUG 2025",
           items: [
-            "Developed and optimized enterprise modules using Java, TypeScript, Angular, and SQL, significantly improving application performance and scalability.",
-            "Resolved 20+ UI and Backend bugs, directly enhancing product stability and reducing customer-reported issues.",
-            "Refactored and optimized the hot-key directive for application shortcut services, improving maintainability and reducing redundant logic.",
-            "Worked with Azure DevOps and Jenkins for version control, CI/CD pipelines, and automated deployments.",
-            "Collaborated effectively within a 10-member Agile team, contributing to 4+ sprints, peer code reviews, and daily standups.",
+            "Developed and optimized enterprise modules using Java, TypeScript, Angular, and SQL.",
+            "Resolved 20+ UI and Backend bugs, directly enhancing product stability.",
+            "Refactored hot-key directives, improving maintainability and reducing redundant logic.",
+            "Managed CI/CD pipelines via Azure DevOps and Jenkins.",
+            "Collaborated within a 10-member Agile team, contributing to 4+ sprints."
           ],
         },
         deloai: {
@@ -989,10 +985,10 @@
           role: "App Development Intern",
           date: "MAY 2023 - NOV 2023",
           items: [
-            "Built an ERP App for a government school serving 500+ students, reducing manual administrative work by 30% using React Native, Django, and MongoDB.",
-            "Developed a full-scale E-Commerce app supporting 1,000+ products with real-time order tracking using React Native, Flask, and AWS.",
-            "Deployed applications on AWS, implementing efficient API usage strategies to optimize server costs.",
-            "Collaborated closely with designers and backend engineers to deliver robust full-stack solutions under strict deadlines.",
+            "Built an ERP App for a government school serving 500+ students.",
+            "Developed an E-Commerce app supporting 1,000+ products with real-time tracking.",
+            "Deployed applications on AWS, implementing efficient API usage strategies.",
+            "Collaborated with designers and backend engineers for full-stack solutions.",
           ],
         },
         // PROJECTS
@@ -1002,34 +998,33 @@
           role: "FinTech Mobile Application",
           date: "PROJECT",
           html: `
-                    <div class="space-y-6">
-                        <div>
-                            <span class="project-section-title">Description</span>
-                            <p>A comprehensive mobile application designed for small to medium businesses to streamline financial tracking, manage expenses, and handle team collaborations. The app simplifies complex accounting tasks with features like multi-user roles, real-time transaction monitoring, and automated subscription management, all wrapped in a secure and intuitive interface.</p>
-                        </div>
-                        <div>
-                            <span class="project-section-title">Key Features</span>
-                            <ul class="custom-list pl-4 space-y-2 relative">
-                                <li class="pl-6 relative"><strong>Role-Based Access Control (RBAC):</strong> Supports distinct roles (Creator, Admin, Staff) with specific permissions for secure collaboration.</li>
-                                <li class="pl-6 relative"><strong>Real-Time Expense Tracking:</strong> Record and categorize income and expenses (Cash-In/Cash-Out) with receipt uploads.</li>
-                                <li class="pl-6 relative"><strong>Subscription & Payment:</strong> Robust subscription model (Solo, Wholesale, Owner) integrated with Razorpay.</li>
-                                <li class="pl-6 relative"><strong>Interactive Dashboard:</strong> Visual insights into financial health through dynamic charts and reports.</li>
-                                <li class="pl-6 relative"><strong>Secure Auth:</strong> Implements secure user authentication and business profile management.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <span class="project-section-title">Tech Stack</span>
-                            <div class="flex flex-wrap gap-2 text-sm font-mono mt-2">
-                                <span class="px-2 py-1 border border-outline/30 rounded">React Native</span>
-                                <span class="px-2 py-1 border border-outline/30 rounded">Expo</span>
-                                <span class="px-2 py-1 border border-outline/30 rounded">TypeScript</span>
-                                <span class="px-2 py-1 border border-outline/30 rounded">Go (Backend)</span>
-                                <span class="px-2 py-1 border border-outline/30 rounded">RESTful APIs</span>
-                                <span class="px-2 py-1 border border-outline/30 rounded">Razorpay</span>
-                            </div>
-                        </div>
+            <div class="space-y-6">
+                <div>
+                    <span class="project-section-title">Description</span>
+                    <p>A comprehensive mobile application designed for small to medium businesses to streamline financial tracking, manage expenses, and handle team collaborations. The app simplifies complex accounting tasks with features like multi-user roles, real-time transaction monitoring, and automated subscription management.</p>
+                </div>
+                <div>
+                    <span class="project-section-title">Key Features</span>
+                    <ul class="custom-list pl-4 space-y-2 relative">
+                        <li class="pl-6 relative"><strong>Role-Based Access Control:</strong> Distinct roles (Creator, Admin, Staff).</li>
+                        <li class="pl-6 relative"><strong>Real-Time Expense Tracking:</strong> Record income/expenses with receipt uploads.</li>
+                        <li class="pl-6 relative"><strong>Subscription:</strong> Integrated with Razorpay (Solo, Wholesale, Owner).</li>
+                        <li class="pl-6 relative"><strong>Interactive Dashboard:</strong> Dynamic charts and reports.</li>
+                        <li class="pl-6 relative"><strong>Secure Auth:</strong> Multi-business profile management.</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="project-section-title">Tech Stack</span>
+                    <div class="flex flex-wrap gap-2 text-xs md:text-sm font-mono mt-2">
+                        <span class="px-2 py-1 border border-outline/30 rounded">React Native</span>
+                        <span class="px-2 py-1 border border-outline/30 rounded">Expo</span>
+                        <span class="px-2 py-1 border border-outline/30 rounded">TypeScript</span>
+                        <span class="px-2 py-1 border border-outline/30 rounded">Go (Backend)</span>
+                        <span class="px-2 py-1 border border-outline/30 rounded">Razorpay</span>
                     </div>
-                `,
+                </div>
+            </div>
+          `,
         },
         creative: {
           type: "html",
@@ -1037,34 +1032,31 @@
           role: "Collaboration Platform",
           date: "PROJECT",
           html: `
-                    <div class="space-y-6">
-                        <div>
-                            <span class="project-section-title">Description</span>
-                            <p>CreativeConnect is a collaborative platform designed for professionals in the movie and entertainment industry to showcase their work, manage portfolios, and collaborate on creative projects. It enables seamless interaction between creators such as actors, writers, musicians, and filmmakers through structured portfolios and project management features.</p>
-                        </div>
-                        <div>
-                            <span class="project-section-title">Key Features</span>
-                            <ul class="custom-list pl-4 space-y-2 relative">
-                                <li class="pl-6 relative"><strong>User Profile & Portfolio:</strong> Create and manage professional profiles with detailed portfolios (scripts, reels, music).</li>
-                                <li class="pl-6 relative"><strong>Project Management:</strong> Add, view, and manage creative projects with visual representation.</li>
-                                <li class="pl-6 relative"><strong>Media Support:</strong> Upload and showcase scripts, music files, and video reels.</li>
-                                <li class="pl-6 relative"><strong>CRUD Controls:</strong> Full functionality for editing and deleting portfolios and projects.</li>
-                                <li class="pl-6 relative"><strong>Role-Based Representation:</strong> Supports multiple creative roles like screenwriters, actors, and filmmakers.</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <span class="project-section-title">Tech Stack</span>
-                            <div class="flex flex-wrap gap-2 text-sm font-mono mt-2">
-                                <span class="px-2 py-1 border border-outline/30 rounded">Angular 17</span>
-                                <span class="px-2 py-1 border border-outline/30 rounded">TypeScript</span>
-                                <span class="px-2 py-1 border border-outline/30 rounded">SCSS</span>
-                                <span class="px-2 py-1 border border-outline/30 rounded">Reactive Forms</span>
-                                <span class="px-2 py-1 border border-outline/30 rounded">REST API</span>
-                                <span class="px-2 py-1 border border-outline/30 rounded">Git</span>
-                            </div>
-                        </div>
+            <div class="space-y-6">
+                <div>
+                    <span class="project-section-title">Description</span>
+                    <p>CreativeConnect is a collaborative platform designed for professionals in the movie and entertainment industry to showcase their work, manage portfolios, and collaborate on creative projects. It enables seamless interaction between creators such as actors, writers, and filmmakers.</p>
+                </div>
+                <div>
+                    <span class="project-section-title">Key Features</span>
+                    <ul class="custom-list pl-4 space-y-2 relative">
+                        <li class="pl-6 relative"><strong>User Profile:</strong> Manage professional profiles and portfolios.</li>
+                        <li class="pl-6 relative"><strong>Project Management:</strong> Add and view creative projects.</li>
+                        <li class="pl-6 relative"><strong>Media Support:</strong> Upload scripts, music files, and video reels.</li>
+                        <li class="pl-6 relative"><strong>CRUD Controls:</strong> Full editing functionality.</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="project-section-title">Tech Stack</span>
+                    <div class="flex flex-wrap gap-2 text-xs md:text-sm font-mono mt-2">
+                        <span class="px-2 py-1 border border-outline/30 rounded">Angular 17</span>
+                        <span class="px-2 py-1 border border-outline/30 rounded">TypeScript</span>
+                        <span class="px-2 py-1 border border-outline/30 rounded">SCSS</span>
+                        <span class="px-2 py-1 border border-outline/30 rounded">Reactive Forms</span>
                     </div>
-                `,
+                </div>
+            </div>
+          `,
         },
       };
 
@@ -1082,7 +1074,6 @@
         const bodyContainer = document.getElementById("modal-body-container");
         bodyContainer.innerHTML = "";
 
-        // Handle different content types
         if (data.type === "list") {
           const ul = document.createElement("ul");
           ul.className = "custom-list space-y-4 pl-4 relative";
@@ -1119,6 +1110,20 @@
           closeModal();
         }
       });
+
+      // Project 1 Slideshow
+      (function() {
+          const slides = document.querySelectorAll('#ledgerit-slideshow .slide');
+          if(slides.length === 0) return;
+          let currentSlide = 0;
+          setInterval(() => {
+              slides[currentSlide].classList.remove('opacity-60');
+              slides[currentSlide].classList.add('opacity-0');
+              currentSlide = (currentSlide + 1) % slides.length;
+              slides[currentSlide].classList.remove('opacity-0');
+              slides[currentSlide].classList.add('opacity-60');
+          }, 4000);
+      })();
     </script>
   </body>
 </html>
